@@ -6,20 +6,27 @@
   sudo apt-get install -y git
   sudo apt-get install -y openjdk-7-jdk
   sudo apt-get install -y maven
+  sudo apt-get install -y mongodb
  }
 
  create_folders() {
   'creating folders'
-  mkdir ~/workspace
+  mkdir /home/vagrant/workspace
  }
 
  fetch_repos() {
   'fetching repos'
-  cd ~/workspace
-  git clone git@github.com:javiersvg/spring-phonecat.git
+  cd /home/vagrant/workspace
+  git clone https://github.com/javiersvg/spring-phonecat.git
+  sudo chown -R vagrant:vagrant spring-phonecat/
  }
 
  start_app() {
-  cd ~/workspace/spring-phonecat
+  cd /home/vagrant/workspace/spring-phonecat
   mvn jetty:run
  }
+
+install_dependencies
+create_folders
+fetch_repos
+start_app
